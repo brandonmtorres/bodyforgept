@@ -109,6 +109,49 @@ more idiomatic choice and drops two preconnects, but it registers a different
 out 22px wider, which changed every pull quote's wrap and shifted the page below it. The
 note in `app/layout.tsx` records this.
 
+## Deployment
+
+GitHub Pages serves the **`gh-pages`** branch, which holds only the compiled export.
+`main` holds the source. To publish a change:
+
+```bash
+cd web && npm run build
+git checkout gh-pages
+rm -rf ./*            # keep .git
+cp -r web/out/. .
+git add -A && git commit -m "Publish static export" && git push
+git checkout main
+```
+
+`public/CNAME` carries the custom domain into every build, and `public/.nojekyll` stops
+Pages stripping `_next/` for its leading underscore — without it every stylesheet and
+script 404s.
+
+**This is manual.** `.github/workflows/deploy.yml` automates it — build, type-check,
+lint, assert every page is present, deploy — but pushing a workflow file needs a token
+with `workflow` scope, which the current one lacks:
+
+```bash
+gh auth refresh -h github.com -s workflow      # then the workflow can be pushed
+```
+
+Once that lands, set the Pages source to "GitHub Actions" and every push to `main` that
+touches `web/` deploys itself.
+
+### DNS
+
+The apex domain needs GitHub's four A records **and** four AAAA records. Leaving the
+old AAAA records in place sends every IPv6 visitor to the previous host while IPv4
+visitors get the new site, which looks like an intermittent fault.
+
+```
+A     @    185.199.108.153, 185.199.109.153, 185.199.110.153, 185.199.111.153
+AAAA  @    2606:50c0:8000::153, 2606:50c0:8001::153, 2606:50c0:8002::153, 2606:50c0:8003::153
+CNAME www  brandonmtorres.github.io
+```
+
+Leave MX records alone — the clinic's mail is on this domain.
+
 ## Verification
 
 The Python gates in `tools/` take `BF_SITE` and `BF_BASE`, defaulting to `site/` and
