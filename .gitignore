@@ -1,0 +1,22 @@
+# ── dependencies and build output ──────────────────────────────────────────
+node_modules/
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+
+# ── generated screenshots from the verification tools ──────────────────────
+# tools/test-flow.py rewrites these on every run
+.shots/
+
+# ── local tooling state, not project configuration ─────────────────────────
+.claude/settings.local.json
+
+# ── the untouched camera originals ─────────────────────────────────────────
+# Nine files, 108 MB, and the only thing that reads them is tools/build-assets.py.
+# Every derivative it produces is committed under site/assets/media/ and
+# web/public/media/, so the site builds and runs without them. Restore this folder
+# from the clinic's own copy before re-running build-assets.py.
+site/assets/img/new_img/
+
+.DS_Store
