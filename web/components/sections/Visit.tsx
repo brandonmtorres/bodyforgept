@@ -57,7 +57,7 @@ export function Visit() {
             </li>
             <li>
               <a href={SITE.instagram} target="_blank" rel="noopener">
-                <span className="mono">IG</span>@bodyforge_physical_therapy
+                <span className="mono">IG</span>{SITE.instagramHandle}
               </a>
             </li>
           </ul>

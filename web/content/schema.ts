@@ -85,7 +85,7 @@ export const HOME_SCHEMA = {
         }
       ],
       "sameAs": [
-        "https://www.instagram.com/bodyforge_physical_therapy/"
+        "https://www.instagram.com/bodyforge.pt/"
       ],
       "founder": {
         "@id": "https://bodyforgept.com/#david"

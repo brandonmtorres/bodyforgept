@@ -36,7 +36,7 @@ export function Book() {
             <li>
               <span className="mono">Social</span>
               <a href={SITE.instagram} target="_blank" rel="noopener">
-                @bodyforge_physical_therapy
+                {SITE.instagramHandle}
               </a>
             </li>
           </ul>

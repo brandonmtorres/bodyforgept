@@ -8,7 +8,8 @@ export const SITE = {
   phone: "+13054561004",
   phoneLabel: "(305) 456-1004",
   email: "info@bodyforgept.com",
-  instagram: "https://www.instagram.com/bodyforge_physical_therapy/",
+  instagram: "https://www.instagram.com/bodyforge.pt/",
+  instagramHandle: "@bodyforge.pt",
   address: {
     street: "3600 West Flagler Street",
     streetShort: "3600 W Flagler St",
